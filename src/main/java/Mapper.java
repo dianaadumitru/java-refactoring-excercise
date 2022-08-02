@@ -32,7 +32,7 @@ public class Mapper {
         return new Translation(Collections.singletonList(names), new Locale(locale));
     }
 
-    private static List<Translation> mapNamesV2(List<InternationalValues> values) {
+    private static List<Translation> mapNames(List<InternationalValues> values) {
         return Arrays.asList(
             getNamesFromInternationalValues(values, "getUk", "en_uk"),
             getNamesFromInternationalValues(values, "getNL", "nl"),
@@ -51,7 +51,7 @@ public class Mapper {
             getNamesFromInternationalValues(values,"getLuFr","lux_fr"));
     }
 
-    private static List<Translation> mapNames(List<InternationalValues> values) {
+    private static List<Translation> mapNamesV2(List<InternationalValues> values) {
         String name = values.stream().map(iv -> iv.getUk().getName()).distinct().collect(Collectors.joining(" "));
         Translation psfUk = new Translation(Collections.singletonList(name), new Locale("en_uk"));
         String nameNl = values.stream().map(iv -> iv.getNl().getName()).distinct().collect(Collectors.joining(" "));
