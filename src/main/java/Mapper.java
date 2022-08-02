@@ -1,13 +1,55 @@
+import com.mcserby.training.refactoring.Details;
 import com.mcserby.training.refactoring.InternationalValues;
 import com.mcserby.training.refactoring.Locale;
 import com.mcserby.training.refactoring.Translation;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Mapper {
+
+    private static Translation getNamesFromInternationalValues(List<InternationalValues> iv, String getter, String locale) {
+        String names = "";
+        try {
+            Class<?> c = Class.forName("InternationalValues");
+            Method getMethod = c.getDeclaredMethod(getter, null);
+            List<Details> details = iv.stream().map(elem -> {
+                try {
+                    return (Details) getMethod.invoke(elem, null);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+                return new Details();
+            }).collect(Collectors.toList());
+            names = details.stream().map(Details::getName).distinct().collect(Collectors.joining(""));
+        } catch (ClassNotFoundException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return new Translation(Collections.singletonList(names), new Locale(locale));
+    }
+
+    private static List<Translation> mapNamesV2(List<InternationalValues> values) {
+        return Arrays.asList(
+            getNamesFromInternationalValues(values, "getUk", "en_uk"),
+            getNamesFromInternationalValues(values, "getNL", "nl"),
+            getNamesFromInternationalValues(values, "getDe", "de"),
+            getNamesFromInternationalValues(values, "getFr", "fr"),
+            getNamesFromInternationalValues(values, "getEs", ""),
+            getNamesFromInternationalValues(values, "getIt", "it"),
+            getNamesFromInternationalValues(values, "getAt", "at"),
+            getNamesFromInternationalValues(values, "getChFr", "ch_fr"),
+            getNamesFromInternationalValues(values, "getChDe", "ch_de"),
+            getNamesFromInternationalValues(values, "getChDe", "ch_de"),
+            getNamesFromInternationalValues(values,"getChIt","ch_it"),
+            getNamesFromInternationalValues(values,"getBeFr","be_fr"),
+            getNamesFromInternationalValues(values,"getLuDe","lux_de"),
+            getNamesFromInternationalValues(values,"getCaEs","es_ca"),
+            getNamesFromInternationalValues(values,"getLuFr","lux_fr"));
+    }
 
     private static List<Translation> mapNames(List<InternationalValues> values) {
         String name = values.stream().map(iv -> iv.getUk().getName()).distinct().collect(Collectors.joining(" "));
