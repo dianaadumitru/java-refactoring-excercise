@@ -1,160 +1,52 @@
 package com.mcserby.training.refactoring;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class InternationalValues {
+    private Map<String, Details> values;
 
-    private Details uk = null;
-
-    private Details nl = null;
-
-    private Details de = null;
-
-    private Details fr = null;
-
-    private Details es = null;
-
-    private Details it = null;
-
-    private Details at = null;
-
-    private Details chFr = null;
-
-    private Details chDe = null;
-
-    private Details ru = null;
-
-    private Details hr = null;
-
-    private Details gr = null;
-
-    private Details sl = null;
-
-    private Details chIt = null;
-
-    private Details beFr = null;
-
-    private Details luDe = null;
-
-    private Details li = null;
-
-    private Details pl = null;
-
-    private Details bl = null;
-
-    private Details ua = null;
-
-    private Details cz = null;
-
-    private Details sv = null;
-
-    private Details caEs = null;
-
-    private Details zh = null;
-
-    private Details beNl = null;
-
-    private Details luFr = null;
-
-    public Details getUk() {
-        return uk;
+    public InternationalValues() {
+        values = new HashMap<>();
+        values.put("uk", null);
+        values.put("nl", null);
+        values.put("de", null);
+        values.put("fr", null);
+        values.put("es", null);
+        values.put("it", null);
+        values.put("at", null);
+        values.put("chFr", null);
+        values.put("chDe", null);
+        values.put("ru", null);
+        values.put("hr", null);
+        values.put("gr", null);
+        values.put("sr", null);
+        values.put("chIt", null);
+        values.put("beFr", null);
+        values.put("li", null);
+        values.put("bl", null);
+        values.put("pl", null);
+        values.put("ua", null);
+        values.put("cz", null);
+        values.put("sv", null);
+        values.put("caEs", null);
+        values.put("zh", null);
+        values.put("luDe", null);
+        values.put("beNl", null);
+        values.put("luFr", null);
     }
 
-    public Details getNl() {
-        return nl;
+    public Map<String, Details> getValues() {
+        return values;
     }
 
-    public Details getDe() {
-        return de;
+    public String getName(String key) {
+        return values.get(key).getName();
     }
 
-    public Details getFr() {
-        return fr;
-    }
-
-    public Details getEs() {
-        return es;
-    }
-
-    public Details getIt() {
-        return it;
-    }
-
-    public Details getAt() {
-        return at;
-    }
-
-    public Details getChFr() {
-        return chFr;
-    }
-
-    public Details getChDe() {
-        return chDe;
-    }
-
-    public Details getRu() {
-        return ru;
-    }
-
-    public Details getHr() {
-        return hr;
-    }
-
-    public Details getGr() {
-        return gr;
-    }
-
-    public Details getSl() {
-        return sl;
-    }
-
-    public Details getChIt() {
-        return chIt;
-    }
-
-    public Details getBeFr() {
-        return beFr;
-    }
-
-    public Details getLuDe() {
-        return luDe;
-    }
-
-    public Details getLi() {
-        return li;
-    }
-
-    public Details getPl() {
-        return pl;
-    }
-
-    public Details getBl() {
-        return bl;
-    }
-
-    public Details getUa() {
-        return ua;
-    }
-
-    public Details getCz() {
-        return cz;
-    }
-
-    public Details getSv() {
-        return sv;
-    }
-
-    public Details getCaEs() {
-        return caEs;
-    }
-
-    public Details getZh() {
-        return zh;
-    }
-
-    public Details getBeNl() {
-        return beNl;
-    }
-
-    public Details getLuFr() {
-        return luFr;
+    public String getDescription(String key) {
+        return values.get(key).getDescription();
     }
 }
